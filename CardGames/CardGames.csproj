@@ -48,6 +48,19 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Cards.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{1CBFEE48-C1E7-420A-8532-EB1FB69C7B26}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Games\Games.csproj">
+      <Project>{26F30D58-321B-46AA-A976-89A51658CD58}</Project>
+      <Name>Games</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
