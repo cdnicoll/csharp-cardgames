@@ -54,7 +54,7 @@ namespace BusinessLogic.Cards
 
         private bool canDrawCards(int amountToDraw)
         {
-            if (this.Count > amountToDraw)
+            if (this.Count >= amountToDraw && this.Count != 0)
             {
                 return true;
             }
