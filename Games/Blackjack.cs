@@ -60,6 +60,8 @@ namespace Games.Blackjack
                 Console.WriteLine("Count: {0}", _playerTwo.PlayerHand[0].Value);
             }
 
+            // adding a test
+
             while (!win)
             {
                 Console.Write("Please type 'hit' or 'stand': ");
