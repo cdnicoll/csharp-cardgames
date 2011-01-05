@@ -1,0 +1,6 @@
+<recipe>
+  <assembly path="csTests\bin\Release\csTests.dll" />
+  <selector selectorClass="csUnit.Core.CategorySelector">
+    <categorySelector />
+  </selector>
+</recipe>
