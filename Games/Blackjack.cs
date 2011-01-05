@@ -26,7 +26,7 @@ namespace Games.Blackjack
         private Player _playerTurn { get; set; }
         private bool _playingBot { get; set; }
 
-        public Blackjack()
+        public Blackjack(string playerOneName)
         {
             Deck = new Deck();
             buildDeck();
@@ -36,7 +36,7 @@ namespace Games.Blackjack
             _playingBot = true;
             
             // play
-            _playerOne = new Player("Player One");
+            _playerOne = new Player(playerOneName);
             _playerTwo = new Player("Dealer");
             _playerTurn = _playerOne;
 
@@ -136,7 +136,14 @@ namespace Games.Blackjack
         /// <param name="hand"></param>
         public override void addCardToHand(Hand hand)
         {
-            hand.Add(Deck.DrawCard());
+            try
+            {
+                hand.Add(Deck.DrawCard());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         /// <summary>

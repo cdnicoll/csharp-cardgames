@@ -12,7 +12,7 @@ namespace CardGames
     {
         static void Main(string[] args)
         {
-            Blackjack blackJack = new Blackjack();
+            Blackjack blackJack = new Blackjack("Player One");
         }
 
     }
