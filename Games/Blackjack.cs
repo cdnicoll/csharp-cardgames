@@ -21,8 +21,6 @@ namespace Games.Blackjack
 
         public Deck Deck { get; set; }
         // TODO: allow for read-only access
-        private Player _playerOne { get; set; }
-        private Player _playerTwo { get; set; }
         private Player _playerTurn { get; set; }
         private bool _playingBot { get; set; }
 
@@ -36,9 +34,11 @@ namespace Games.Blackjack
             _playingBot = true;
             
             // play
-            _playerOne = new Player(playerOneName);
-            _playerTwo = new Player("Dealer");
-            _playerTurn = _playerOne;
+            players = new PlayerCollection();
+            players.Add(new Player(playerOneName));
+            players.Add(new Player("Dealer"));
+            
+            _playerTurn = players[0];
 
             dealNewGame();
 
@@ -80,27 +80,27 @@ namespace Games.Blackjack
                 // check for winner
                 // --- Player 1 WINS ---
                 if (
-                    countHand(_playerOne) > countHand(_playerTwo) ||
-                    countHand(_playerOne) == BLACK_JACK ||
-                    countHand(_playerTwo) > BLACK_JACK
+                    countHand(players[0]) > countHand(players[1]) ||
+                    countHand(players[0]) == BLACK_JACK ||
+                    countHand(players[1]) > BLACK_JACK
                 )
                 {
-                    if (countHand(_playerOne) == BLACK_JACK)
+                    if (countHand(players[0]) == BLACK_JACK)
                     {
                         Console.WriteLine("Blackjack!");
                     }
 
-                    Console.WriteLine("{0} win's this round", _playerOne.PlayerName);
-                    _playerOne.GamesWon += 1;
+                    Console.WriteLine("{0} win's this round", players[0].PlayerName);
+                    players[0].GamesWon += 1;
                 }
                 else
                 {
-                    Console.WriteLine("{0} win's this round", _playerTwo.PlayerName);
-                    _playerTwo.GamesWon += 1;
+                    Console.WriteLine("{0} win's this round", players[1].PlayerName);
+                    players[1].GamesWon += 1;
                 }
 
-                _playerOne.GamesPlayed += 1;
-                _playerTwo.GamesPlayed += 1;
+                players[0].GamesPlayed += 1;
+                players[1].GamesPlayed += 1;
 
                 Console.Write("Play again? (Y/N): ");
                 string playAgain = Console.ReadLine();
@@ -224,7 +224,7 @@ namespace Games.Blackjack
             {
                 handString += _playerTurn.PlayerHand[0].ToString();
                 handString += "Hidden Card\r\n";
-                handString += "Count: " + _playerTwo.PlayerHand[0].Value;
+                handString += "Count: " + players[1].PlayerHand[0].Value;
             }
             
             return handString + "\r\n";
@@ -235,15 +235,15 @@ namespace Games.Blackjack
         /// </summary>
         private void endTurn()
         {
-            if (_playerTurn == _playerOne)
+            if (_playerTurn == players[0])
             {
-                _playerTurn = _playerTwo;
+                _playerTurn = players[1];
                 
             }
 
             else
             {
-                _playerTurn = _playerOne;
+                _playerTurn = players[0];
             }
         }
 
