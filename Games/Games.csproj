@@ -48,6 +48,7 @@
     <Compile Include="Blackjack.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
